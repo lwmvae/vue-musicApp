@@ -6,9 +6,6 @@
 <script>
 import BScroll from 'better-scroll'
 
-// const DIRECTION_H = 'horizontal'
-// const DIRECTION_V = 'vertical'
-
 export default {
   name: 'Scroll',
   props: {
@@ -20,9 +17,13 @@ export default {
       type: Boolean,
       default: true
     },
-    data:{
-      type:Array,
-      default:null
+    data: {
+      type: Array,
+      default: null
+    },
+    listenScroll: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
@@ -35,10 +36,18 @@ export default {
       if (!this.$refs.wrapper) {
         return
       }
-      this.scroll = new BScroll(this.$refs.wrapper,{
-        probeType:this.probeType,
-        click:this.click
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        probeType: this.probeType,
+        click: this.click
       })
+      if (this.listenScroll) {
+        this.scroll.on('scroll', (pos) => {
+          this.$emit('scroll', pos)
+        })
+      }
+    },
+    scrollToElement() {
+      this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
     }
   }
 }

@@ -12,11 +12,15 @@ export default {
 
 <style scoped>
 .tab{
+	display: flex;
+	z-index: 20;
+	background-color: #fff;
 	text-align: center;
 	height: 30px;
-	line-height: 30px;	
 }
 .tab-item{
+	flex:1;
 	font-size: 16px;
+	line-height: 30px;
 }
 </style>

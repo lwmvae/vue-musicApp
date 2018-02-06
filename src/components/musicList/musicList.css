@@ -1,0 +1,36 @@
+.music-list {
+  position: relative;
+}
+.back {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  z-index: 10;
+}
+.back .back-icon {
+  display: block;
+  width: 40px;
+  font-size: 30px;
+  color: #ffcd32;
+  text-align: center;
+}
+.title {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  z-index: 10;
+}
+.bg-image {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 70%;
+  height: 0;
+  background-size: cover;
+}
