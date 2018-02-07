@@ -1,7 +1,7 @@
 <template>
-  <div class="singer-detail">
+  <transition name="slide">
     <music-list :songs="songs" :title="title" :bgImage="bgImage"></music-list>
-  </div>
+  </transition>
 </template>
 <script>
 import MusicList from 'components/musicList/musicList'
@@ -30,10 +30,10 @@ export default {
   },
   methods: {
     _getSingerDetail() {
-      // if (!this.singer.id) {
-      //   this.$router.push('/singer')
-      //   return
-      // }
+      if (!this.singer.id) {
+        this.$router.push('/singer')
+        return
+      }
       getSingerDetail(this.singer.id).then((res) => {
         if (res.code === ERR_OK) {
           this.songs = this._normalSongs(res.data.list)
@@ -58,15 +58,14 @@ export default {
 
 </script>
 <style scoped>
-.singer-detail {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #fff;
-  z-index: 20;
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translate3d(100%, 0, 0);
 }
 
 </style>

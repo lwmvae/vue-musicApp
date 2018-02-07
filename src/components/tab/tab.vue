@@ -1,6 +1,7 @@
 <template>
   <div class="tab">
   	<router-link to="/singer" class="tab-item">歌手</router-link>
+  	<router-link to="/search" class="tab-item">搜索</router-link>
   </div>
 </template>
 

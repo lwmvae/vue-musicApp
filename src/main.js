@@ -7,6 +7,7 @@ import VueLazyload from 'vue-lazyload'
 import store from './store'
 
 import 'common/css/initial.css'
+import 'common/css/icon.css'
 
 // Vue.config.productionTip = false
 

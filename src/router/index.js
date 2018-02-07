@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import singer from 'components/singer/singer'
+import search from 'components/search/search'
 import singerDetail from 'components/singerDetail/singerDetail'
 
 Vue.use(Router)
@@ -8,7 +9,7 @@ Vue.use(Router)
 export default new Router({
   routes: [{
       path: '/',
-      redirect: '/singer'
+      redirect: '/search'
     },
     {
       path: '/singer',
@@ -17,6 +18,10 @@ export default new Router({
         path: ':id',
         component: singerDetail
       }]
+    },
+    {
+      path: '/search',
+      component: search
     }
   ]
 })
