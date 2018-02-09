@@ -19,9 +19,6 @@ export const searchMixin = {
     saveSearch() {
       this.saveSearchHistory(this.query)
     },
-    deleteHistory() {
-      console.log()
-    },
-    ...mapActions(['saveSearchHistory', 'deleteSearchHistory'])
+    ...mapActions(['saveSearchHistory', 'deleteSearchHistory','clearSearchHistory'])
   }
 }

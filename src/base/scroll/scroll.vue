@@ -25,9 +25,13 @@ export default {
       type: Boolean,
       default: false
     },
-    pullup:{
-      type:Boolean,
-      default:false
+    pullup: {
+      type: Boolean,
+      default: false
+    },
+    refreshDelay: {
+      type: Number,
+      default: 20
     }
   },
   mounted() {
@@ -49,9 +53,9 @@ export default {
           this.$emit('scroll', pos)
         })
       }
-      if(this.pullup){
-        this.scroll.on('scrollEnd',()=>{
-          if(this.scroll.y<=this.scroll.maxScrollY){
+      if (this.pullup) {
+        this.scroll.on('scrollEnd', () => {
+          if (this.scroll.y <= this.scroll.maxScrollY) {
             this.$emit('scrollToEnd')
           }
         })
@@ -59,6 +63,16 @@ export default {
     },
     scrollToElement() {
       this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh()
+    }
+  },
+  watch: {
+    data() {
+      setTimeout(() => {
+        this.refresh()
+      }, this.refreshDelay)
     }
   }
 }

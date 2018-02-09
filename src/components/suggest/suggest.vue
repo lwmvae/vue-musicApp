@@ -1,5 +1,5 @@
 <template>
-  <scroll class="suggest" :pullup="pullup" @scrollToEnd="searchMore">
+  <scroll class="suggest" ref="suggest" :pullup="pullup" @scrollToEnd="searchMore" :data="result">
     <ul class="suggest-wrapper">
       <li v-for="item in result" class="item" @click="selectItem(item)">
         <div class="icon">
@@ -23,7 +23,6 @@ import Loading from 'base/loading/loading'
 import { ERR_OK } from 'api/config'
 import { search } from 'api/search'
 import { createSong } from 'common/js/song'
-import {mapMutations} from 'vuex'
 
 const perpage = 20
 const TYPE_SINGER = 'singer'
@@ -49,12 +48,11 @@ export default {
     }
   },
   methods: {
-    selectItem(item){
-      if(item.type === TYPE_SINGER){
-
-      }else{
-
-      }
+    refresh() {
+      this.$refs.suggest.refresh()
+    },
+    selectItem(item) {
+      this.$emit('select', item)
     },
     getIconClass(item) {
       if (item.type === TYPE_SINGER) {
@@ -74,14 +72,20 @@ export default {
       if (!this.hasMore) {
         return
       }
-      this.page++
-        this._search()
-    },
-    _search() {
+      this.page++;
       search(this.query, this.page, this.showSinger, perpage).then((res) => {
         if (res.code === ERR_OK) {
           this.result = this.result.concat(this._genResult(res.data))
-          console.log(res.data)
+          this._checkMore(res.data)
+        }
+      })
+    },
+    _search() {
+      this.page = 1;
+      this.hasMore = true;
+      search(this.query, this.page, this.showSinger, perpage).then((res) => {
+        if (res.code === ERR_OK) {
+          this.result = this.result.concat(this._genResult(res.data))
           this._checkMore(res.data)
         }
       })
@@ -119,6 +123,7 @@ export default {
   },
   watch: {
     query(newQuery) {
+      this.result=[]
       this._search(newQuery)
     }
   },
@@ -150,6 +155,7 @@ export default {
 .name {
   flex: 1;
   height: 19px;
+  overflow: hidden;
 }
 
 .text {

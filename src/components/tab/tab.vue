@@ -24,4 +24,7 @@ export default {
 	font-size: 16px;
 	line-height: 30px;
 }
+.active{
+	color: #3385ff;
+}
 </style>

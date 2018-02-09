@@ -4,9 +4,23 @@
 
 .search-wrapper {
 	margin: 0 20px;
+	position: fixed;
+	top: 110px;
+	bottom: 0;
+	background-color: #fff;
+	overflow: hidden;
+
+	.hotAndHistory {
+		height: 100%;
+	}
+
 }
 
 .hot {
+	.title {
+		font-weight: bold;
+	}
+
 	.item {
 		display: inline-block;
 		padding: 5px 10px;
@@ -27,6 +41,7 @@
 
 		.text {
 			flex: 1;
+			font-weight: bold;
 		}
 
 	}
